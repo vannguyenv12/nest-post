@@ -1,4 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
+import { ForbiddenException } from 'src/exceptions/ForbiddenException';
 
 const data = [
   {
@@ -22,5 +28,9 @@ const data = [
 export class PostService {
   getAll() {
     return data;
+  }
+
+  getOne(id: number) {
+    return data.find((post) => post.id === id);
   }
 }
