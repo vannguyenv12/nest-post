@@ -3,7 +3,7 @@ import { TestService } from './test.service';
 
 @Controller()
 export class TestController {
-  private testService: TestService = new TestService();
+  constructor(private readonly testService: TestService) {}
 
   @Get('/products')
   findAllProducts() {
