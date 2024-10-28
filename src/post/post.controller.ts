@@ -1,6 +1,5 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { PostService } from './post.service';
-import { PostDocument } from './schemas/post.schema';
 import { CreatePostDTO } from './dtos/create-post.dto';
 
 @Controller('posts') // REST
@@ -10,6 +9,11 @@ export class PostController {
   @Post()
   create(@Body() requestBody: CreatePostDTO) {
     return this.postService.create(requestBody);
+  }
+
+  @Get()
+  getAll() {
+    return this.postService.getAll();
   }
 }
 

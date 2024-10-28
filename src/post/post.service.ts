@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Post, PostDocument } from './schemas/post.schema';
+import { Post } from './schemas/post.schema';
 import { CreatePostDTO } from './dtos/create-post.dto';
 import { ResponsePostDTO } from './dtos/response-post.dto';
 
@@ -12,7 +12,7 @@ export class PostService {
   async create(data: CreatePostDTO): Promise<ResponsePostDTO> {
     const createdPost = new this.postModel(data);
 
-    const post = await createdPost.save();
+    const post = await createdPost.save(); // real entity
 
     const postDto = new ResponsePostDTO();
     postDto._id = post._id.toString();
@@ -20,5 +20,17 @@ export class PostService {
     postDto.description = post.description;
 
     return postDto;
+  }
+
+  async getAll(): Promise<ResponsePostDTO[]> {
+    const posts = await this.postModel.find();
+
+    return posts.map((post) => {
+      return {
+        _id: post._id.toString(),
+        title: post.title,
+        description: post.description,
+      } as ResponsePostDTO;
+    });
   }
 }
