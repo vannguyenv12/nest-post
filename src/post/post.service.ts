@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Post } from './schemas/post.schema';
 import { CreatePostDTO } from './dtos/create-post.dto';
-import { ResponsePostDTO } from './dtos/response-post.dto';
+import { UpdatePostDTO } from './dtos/update-post.dto';
 
 @Injectable()
 export class PostService {
@@ -31,5 +31,14 @@ export class PostService {
     }
 
     return post;
+  }
+
+  async update(id: string, requestBody: UpdatePostDTO) {
+    const post = await this.getOne(id);
+
+    post.title = requestBody.title;
+    post.description = requestBody.description;
+
+    return post.save();
   }
 }
