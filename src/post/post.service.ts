@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { Post } from './schemas/post.schema';
 import { CreatePostDTO } from './dtos/create-post.dto';
 import { UpdatePostDTO } from './dtos/update-post.dto';
+import { UpdatePostPatchDTO } from './dtos/update-post-patch.dto';
 
 @Injectable()
 export class PostService {
@@ -38,6 +39,14 @@ export class PostService {
 
     post.title = requestBody.title;
     post.description = requestBody.description;
+
+    return post.save();
+  }
+
+  async updateOne(id: string, requestBody: UpdatePostPatchDTO) {
+    const post = await this.getOne(id);
+
+    Object.assign(post, requestBody);
 
     return post.save();
   }
