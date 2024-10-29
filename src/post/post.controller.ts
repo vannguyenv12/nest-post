@@ -1,10 +1,10 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { TransformDTO } from 'src/interceptors/transform-dto.interceptor';
 import { CreatePostDTO } from './dtos/create-post.dto';
 import { ResponsePostDTO } from './dtos/response-post.dto';
 import { PostService } from './post.service';
 
-@Controller('posts') // REST
+@Controller('posts')
 @TransformDTO(ResponsePostDTO)
 export class PostController {
   constructor(private readonly postService: PostService) {}
@@ -16,9 +16,11 @@ export class PostController {
 
   @Get()
   getAll() {
-    // Convert to DTO
     return this.postService.getAll();
   }
-}
 
-// DTO
+  @Get('/:id')
+  getOne(@Param('id') id: string) {
+    return this.postService.getOne(id);
+  }
+}
