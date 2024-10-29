@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Patch, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { TransformDTO } from 'src/interceptors/transform-dto.interceptor';
 import { CreatePostDTO } from './dtos/create-post.dto';
 import { ResponsePostDTO } from './dtos/response-post.dto';
@@ -34,5 +43,10 @@ export class PostController {
   @Patch('/:id')
   updateOne(@Param('id') id: string, @Body() requestBody: UpdatePostPatchDTO) {
     return this.postService.updateOne(id, requestBody);
+  }
+
+  @Delete('/:id')
+  deleteOne(@Param('id') id: string) {
+    return this.postService.deleteOne(id);
   }
 }
