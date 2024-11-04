@@ -14,7 +14,9 @@ import { ResponsePostDTO } from './dtos/response-post.dto';
 import { UpdatePostPatchDTO } from './dtos/update-post-patch.dto';
 import { UpdatePostDTO } from './dtos/update-post.dto';
 import { PostService } from './post.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('posts')
 @Controller('posts')
 @TransformDTO(ResponsePostDTO)
 export class PostController {
