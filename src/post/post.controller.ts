@@ -11,9 +11,9 @@ import {
 import { TransformDTO } from 'src/interceptors/transform-dto.interceptor';
 import { CreatePostDTO } from './dtos/create-post.dto';
 import { ResponsePostDTO } from './dtos/response-post.dto';
-import { PostService } from './post.service';
-import { UpdatePostDTO } from './dtos/update-post.dto';
 import { UpdatePostPatchDTO } from './dtos/update-post-patch.dto';
+import { UpdatePostDTO } from './dtos/update-post.dto';
+import { PostService } from './post.service';
 
 @Controller('posts')
 @TransformDTO(ResponsePostDTO)
