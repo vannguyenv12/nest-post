@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PostModule } from './post/post.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     MongooseModule.forRoot(
       'mongodb+srv://vannguyenvn1212:vannguyenv12@postcluster.vjbbi.mongodb.net/post_db?retryWrites=true&w=majority&appName=PostCluster',
     ),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

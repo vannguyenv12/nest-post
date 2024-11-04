@@ -8,7 +8,7 @@ import { UpdatePostPatchDTO } from './dtos/update-post-patch.dto';
 
 @Injectable()
 export class PostService {
-  constructor(@InjectModel(Post.name) private postModel: Model<Post>) {}
+  constructor(@InjectModel(Post.name) private postModel: Model<Post>) {} // 10 service
 
   async create(data: CreatePostDTO) {
     const createdPost = new this.postModel(data);
