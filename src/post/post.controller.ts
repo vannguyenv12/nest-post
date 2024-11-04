@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Put,
+  Version,
 } from '@nestjs/common';
 import { TransformDTO } from 'src/interceptors/transform-dto.interceptor';
 import { CreatePostDTO } from './dtos/create-post.dto';
@@ -18,7 +19,7 @@ import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('posts')
 @Controller('posts')
-@TransformDTO(ResponsePostDTO)
+@TransformDTO(ResponsePostDTO) // class level
 export class PostController {
   constructor(private readonly postService: PostService) {}
 
@@ -30,6 +31,12 @@ export class PostController {
   @Get()
   getAll() {
     return this.postService.getAll();
+  }
+
+  @Version('2')
+  @Get()
+  getAllV2() {
+    return 'version 2';
   }
 
   @Get('/:id')
