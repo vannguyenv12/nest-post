@@ -5,6 +5,7 @@ import { Post } from './schemas/post.schema';
 import { CreatePostDTO } from './dtos/create-post.dto';
 import { UpdatePostDTO } from './dtos/update-post.dto';
 import { UpdatePostPatchDTO } from './dtos/update-post-patch.dto';
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class PostService {
